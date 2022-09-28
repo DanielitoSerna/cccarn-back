@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "detalle_lista_chequeo")
+@Table(name = "detalle_lista_chequeo", schema = "ccarn")
 public class DetalleListaChequeo {
 	
 	@Id

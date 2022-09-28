@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="detalle_andrologico")
+@Table(name="detalle_andrologico", schema = "ccarn")
 public class DetalleAndrologico {
 	
 	@Id

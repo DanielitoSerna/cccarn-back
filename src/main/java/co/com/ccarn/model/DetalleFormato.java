@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="detalle_formato")
+@Table(name="detalle_formato", schema = "ccarn")
 public class DetalleFormato {
 	
 	@Id
