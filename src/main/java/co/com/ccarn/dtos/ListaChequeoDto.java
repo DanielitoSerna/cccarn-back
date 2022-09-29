@@ -60,9 +60,9 @@ public class ListaChequeoDto {
 
 	private String municipio;
 
-	private Integer mv;
+	private Boolean mv;
 
-	private Integer mvz;
+	private Boolean mvz;
 
 	private String nombrePropietario;
 	
