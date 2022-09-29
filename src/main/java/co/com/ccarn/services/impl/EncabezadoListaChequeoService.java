@@ -59,7 +59,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 					detalleListaChequeoRepository.save(detalleListaChequeo);
 				} catch (Exception e) {
 					responseDto.setCodigo("Error");
-					responseDto.setMensaje("Error al guardar el concepto");
+					responseDto.setMensaje("Error al guardar el detalle");
 					e.printStackTrace();
 					return responseDto;
 				}
