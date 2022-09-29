@@ -65,6 +65,8 @@ public class ListaChequeoDto {
 	private Integer mvz;
 
 	private String nombrePropietario;
+	
+	private String nombrePredio;
 
 	private String numeroIdentificacion;
 

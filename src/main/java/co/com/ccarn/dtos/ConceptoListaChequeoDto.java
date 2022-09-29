@@ -32,12 +32,18 @@ public class ConceptoListaChequeoDto {
 	private Integer criterioSiCumpleMayor;
 
 	private Integer criterioSiCumpleMenor;
+	
+	private String especiesExistentesPredioAplicaConcepto;
 
 	private String nombreAtiende;
+	
+	private String nombreAtiendeDos;
 
 	private String nombreAuditoria;
 
 	private String numeroIdentificacionAtiende;
+	
+	private String numeroIdentificacionAtiendeDos;
 
 	private String numeroIdentificacionAuditoria;
 

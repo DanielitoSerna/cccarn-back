@@ -54,14 +54,23 @@ public class ConceptoListaChequeo {
 	@Column(name="criterio_si_cumple_menor")
 	private Integer criterioSiCumpleMenor;
 	
+	@Column(name = "especies_existentes_predio_aplica_concepto")
+	private String especiesExistentesPredioAplicaConcepto;
+	
 	@Column(name="nombre_atiende")
 	private String nombreAtiende;
+	
+	@Column(name = "nombre_atiende_dos")
+	private String nombreAtiendeDos;
 	
 	@Column(name="nombre_auditoria")
 	private String nombreAuditoria;
 	
 	@Column(name="numero_identificacion_atiende")
 	private String numeroIdentificacionAtiende;
+	
+	@Column(name = "numero_identificacion_atiende_dos")
+	private String numeroIdentificacionAtiendeDos;
 	
 	@Column(name="numero_identificacion_auditoria")
 	private String numeroIdentificacionAuditoria;

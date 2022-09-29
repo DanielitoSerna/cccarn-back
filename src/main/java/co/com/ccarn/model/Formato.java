@@ -43,6 +43,7 @@ public class Formato {
 	
 	@Column(name="profesional_a_cargo_uno")
 	private String profesionalACargoUno;
+	
 	private String vereda;
 	
 	@Column(name="tipo_formato")

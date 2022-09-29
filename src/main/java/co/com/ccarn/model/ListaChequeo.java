@@ -84,6 +84,9 @@ public class ListaChequeo {
 	@Column(name="nombre_propietario")
 	private String nombrePropietario;
 	
+	@Column(name = "nombre_predio")
+	private String nombrePredio;
+	
 	@Column(name="numero_identificacion")
 	private String numeroIdentificacion;
 	
