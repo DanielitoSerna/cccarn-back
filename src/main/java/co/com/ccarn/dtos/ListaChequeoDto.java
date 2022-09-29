@@ -102,6 +102,8 @@ public class ListaChequeoDto {
 	
 	private String tipoFormato;
 	
+	private String totalAnimales;
+	
 	private ConceptoListaChequeoDto concepto;
 	
 	private List<DetalleListaChequeoDto> detalle;

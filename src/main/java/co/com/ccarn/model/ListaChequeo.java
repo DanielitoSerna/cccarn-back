@@ -124,6 +124,9 @@ public class ListaChequeo {
 	@Column(name="tipo_visita")
 	private String tipoVisita;
 	
+	@Column(name = "total_animales")
+	private String totalAnimales;
+	
 	private String vereda;
 	
 	private String zoocria;

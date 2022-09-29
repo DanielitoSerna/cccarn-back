@@ -14,6 +14,8 @@ public class DetalleListaChequeoDto {
 	private Integer id;
 
 	private String calificacion;
+	
+	private String numeral;
 
 	private String objetivo;
 
