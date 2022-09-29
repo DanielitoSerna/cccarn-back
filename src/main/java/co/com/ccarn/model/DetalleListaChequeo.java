@@ -27,6 +27,8 @@ public class DetalleListaChequeo {
 	
 	private String calificacion;
 	
+	private String numeral;
+	
 	private String objetivo;
 	
 	@Column(name="tipo_criterio")
