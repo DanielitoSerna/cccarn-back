@@ -48,6 +48,12 @@ public class ConceptoListaChequeoDto {
 	private String numeroIdentificacionAuditoria;
 
 	private String observaciones;
+	
+	private Double porcentajeCumplimientoFundamental;
+	
+	private Double porcentajeCumplimientoMayor;
+	
+	private Double porcentajeCumplimientoMenor;
 
 	private Integer totalCriterioFundamental;
 

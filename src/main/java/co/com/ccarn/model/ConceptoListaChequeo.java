@@ -77,6 +77,15 @@ public class ConceptoListaChequeo {
 	
 	private String observaciones;
 	
+	@Column(name = "porcentaje_cumplimiento_fundamental")
+	private Double porcentajeCumplimientoFundamental;
+	
+	@Column(name = "porcentaje_cumplimineto_mayor")
+	private Double porcentajeCumplimientoMayor;
+	
+	@Column(name = "porcentaje_cumplimineto_mayor")
+	private Double porcentajeCumplimientoMenor;
+	
 	@Column(name="total_criterio_fundamental")
 	private Integer totalCriterioFundamental;
 	
