@@ -83,7 +83,7 @@ public class ConceptoListaChequeo {
 	@Column(name = "porcentaje_cumplimineto_mayor")
 	private Double porcentajeCumplimientoMayor;
 	
-	@Column(name = "porcentaje_cumplimineto_menor")
+	@Column(name = "porcentaje_cumplimiento_menor")
 	private Double porcentajeCumplimientoMenor;
 	
 	@Column(name="total_criterio_fundamental")
