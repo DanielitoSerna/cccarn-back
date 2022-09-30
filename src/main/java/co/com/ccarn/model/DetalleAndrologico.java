@@ -92,8 +92,8 @@ public class DetalleAndrologico {
 	@Column(name="olor_post_descongelacion")
 	private String olorPostDescongelacion;
 	
-	@Column(name="patas_pezuñas")
-	private String patasPezuñas;
+	@Column(name="patas_pezunas")
+	private String patasPezunas;
 	
 	private String pene;
 	

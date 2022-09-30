@@ -61,7 +61,7 @@ public class DetalleAndrologicoDto {
 
 	private String olorPostDescongelacion;
 
-	private String patasPezuñas;
+	private String patasPezunas;
 
 	private String pene;
 
@@ -94,5 +94,7 @@ public class DetalleAndrologicoDto {
 	private String volumenFresco;
 
 	private String volumenPostDescongelacion;
+	
+	private FormatoDto formatoBean;
 
 }

@@ -110,5 +110,7 @@ public class DetalleFormatoDto {
 	private String totalRegistros;
 	
 	private String transferidor;
+	
+	private FormatoDto formatoBean;
 
 }
