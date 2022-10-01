@@ -49,6 +49,20 @@ public class Formato {
 	@Column(name="tipo_formato")
 	private String tipoFormato;
 	
+	@Column(name = "profesional_produccion_invitro_embriones")
+	private String profesionalProduccionInvitroEmbriones;
+	
+	@Column(name = "empaque_embriones")
+	private String empaqueEmbriones;
+	
+	private String transferidor;
+	
+	@Column(name = "hora_inicio")
+	private String horaInicio;
+	
+	@Column(name = "hora_final")
+	private String horaFinal;
+	
 	@OneToMany(mappedBy="formatoBean")
 	private List<DetalleAndrologico> detalleAndrologicos;
 	

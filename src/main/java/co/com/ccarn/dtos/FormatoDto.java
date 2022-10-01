@@ -13,29 +13,39 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class FormatoDto {
-	
+
 	private Integer id;
-	
+
 	private String departamento;
-	
+
 	private Timestamp fecha;
-	
+
 	private String municipio;
-	
+
 	private String nombreFinca;
-	
+
 	private String nombrePropietario;
-	
+
 	private String profesionalACargoDos;
-	
+
 	private String profesionalACargoUno;
-	
+
 	private String vereda;
-	
+
 	private String tipoFormato;
-	
+
+	private String profesionalProduccionInvitroEmbriones;
+
+	private String empaqueEmbriones;
+
+	private String transferidor;
+
+	private String horaInicio;
+
+	private String horaFinal;
+
 	private List<DetalleAndrologicoDto> detalleAndrologicos;
-	
+
 	private List<DetalleFormatoDto> detalleFormatos;
 
 }
