@@ -95,15 +95,7 @@ public class DetalleFormatoDto {
 	
 	private String sx;
 	
-	private String tarjetaProfesionalDos;
-	
-	private String tarjetaProfesionalUno;
-	
 	private Integer te;
-	
-	private String tecnicoResponsableDos;
-	
-	private String tecnicoResponsableUno;
 	
 	private String total;
 	

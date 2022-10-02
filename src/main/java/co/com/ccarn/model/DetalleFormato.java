@@ -128,19 +128,7 @@ public class DetalleFormato {
 	
 	private String sx;
 	
-	@Column(name="tarjeta_profesional_dos")
-	private String tarjetaProfesionalDos;
-	
-	@Column(name="tarjeta_profesional_uno")
-	private String tarjetaProfesionalUno;
-	
 	private Integer te;
-	
-	@Column(name="tecnico_responsable_dos")
-	private String tecnicoResponsableDos;
-	
-	@Column(name="tecnico_responsable_uno")
-	private String tecnicoResponsableUno;
 	
 	private String total;
 	

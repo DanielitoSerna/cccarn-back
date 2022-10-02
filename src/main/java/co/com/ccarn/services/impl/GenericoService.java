@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class GenericoService {
 	@Autowired
 	private EntityManager em;
 
+	@Transactional
 	public List<?> listarDatos(GenericoDto dto) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select o from ").append(dto.getTabla()).append(" o ");
@@ -29,6 +31,7 @@ public class GenericoService {
 		return query.setFirstResult(dto.getPagina()).setMaxResults(dto.getCantidad()).getResultList();
 	}
 
+	@Transactional
 	public long contarDatos(GenericoDto dto) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select count(0) from ").append(dto.getTabla()).append(" o ");

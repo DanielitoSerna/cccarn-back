@@ -63,6 +63,18 @@ public class Formato {
 	@Column(name = "hora_final")
 	private String horaFinal;
 	
+	@Column(name="tarjeta_profesional_dos")
+	private String tarjetaProfesionalDos;
+	
+	@Column(name="tarjeta_profesional_uno")
+	private String tarjetaProfesionalUno;
+	
+	@Column(name="tecnico_responsable_dos")
+	private String tecnicoResponsableDos;
+	
+	@Column(name="tecnico_responsable_uno")
+	private String tecnicoResponsableUno;
+	
 	@OneToMany(mappedBy="formatoBean")
 	private List<DetalleAndrologico> detalleAndrologicos;
 	

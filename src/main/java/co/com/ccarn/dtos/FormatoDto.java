@@ -44,6 +44,14 @@ public class FormatoDto {
 
 	private String horaFinal;
 
+	private String tarjetaProfesionalDos;
+
+	private String tarjetaProfesionalUno;
+
+	private String tecnicoResponsableDos;
+
+	private String tecnicoResponsableUno;
+
 	private List<DetalleAndrologicoDto> detalleAndrologicos;
 
 	private List<DetalleFormatoDto> detalleFormatos;
