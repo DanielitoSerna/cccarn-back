@@ -1,9 +1,6 @@
 package co.com.ccarn.services.impl;
 
-import java.sql.Connection;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +86,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT pg_terminate_backend(pg_stat_activity.pid)"
 				+ " FROM pg_stat_activity"
-				+ " WHERE datname = 'ccarn'\r\n"
+				+ " WHERE datname = 'd93gst7a45fh1m'\r\n"
 				+ "  AND pid <> pg_backend_pid()");
 		System.out.println(entityManager.createNativeQuery(sql.toString()));
 		
