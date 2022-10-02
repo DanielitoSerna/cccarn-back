@@ -52,7 +52,8 @@ public class GenericoService {
 				+ " FROM pg_stat_activity"
 				+ " WHERE datname = 'ccarn'\r\n"
 				+ "  AND pid <> pg_backend_pid()");
-		System.out.println(em.createNativeQuery(sql.toString()));
+		Query query = em.createNativeQuery(sql.toString());
+		System.out.println(query.getResultList());
 	}
 
 }

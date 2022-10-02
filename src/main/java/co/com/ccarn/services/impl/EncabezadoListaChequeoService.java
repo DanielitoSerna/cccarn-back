@@ -1,6 +1,9 @@
 package co.com.ccarn.services.impl;
 
+import java.sql.Connection;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +92,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 				+ " WHERE datname = 'ccarn'\r\n"
 				+ "  AND pid <> pg_backend_pid()");
 		System.out.println(entityManager.createNativeQuery(sql.toString()));
+		
 	}
 
 	private DetalleListaChequeo convertirDtoToEntidadDetalle(DetalleListaChequeoDto detalleDto) {
