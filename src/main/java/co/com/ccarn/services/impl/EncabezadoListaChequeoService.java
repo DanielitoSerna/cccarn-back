@@ -1,7 +1,5 @@
 package co.com.ccarn.services.impl;
 
-import javax.persistence.EntityManager;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +29,8 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 	private DetalleListaChequeoRepository detalleListaChequeoRepository;
 	
 	@Autowired
-	private EntityManager entityManager;
-
+	private CerrarConexionService cerrarConexionService;
+	
 	@Override
 	public ResponseDto guardarEncabezadoListaChequeo(ListaChequeoDto listaChequeoDto) {
 		ResponseDto responseDto = new ResponseDto();
@@ -44,7 +42,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 			responseDto.setCodigo("Error");
 			responseDto.setMensaje("Error al guardar encabezado");
 			e.printStackTrace();
-			cerrarConexion();
+			cerrarConexionService.cerrarConexion();
 			return responseDto;
 		}
 		if (listaChequeoGuardado != null) {
@@ -56,7 +54,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 				responseDto.setCodigo("Error");
 				responseDto.setMensaje("Error al guardar el concepto");
 				e.printStackTrace();
-				cerrarConexion();
+				cerrarConexionService.cerrarConexion();
 				return responseDto;
 			}
 			for (DetalleListaChequeoDto detalleDto : listaChequeoDto.getDetalle()) {
@@ -68,28 +66,18 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 					responseDto.setCodigo("Error");
 					responseDto.setMensaje("Error al guardar el detalle");
 					e.printStackTrace();
-					cerrarConexion();
+					cerrarConexionService.cerrarConexion();
 					return responseDto;
 				}
 			}
 			responseDto.setCodigo("Informativo");
 			responseDto.setMensaje("Se guardó correctamente la lista de chequeo, " + listaChequeoGuardado.getId());
-			cerrarConexion();
+			cerrarConexionService.cerrarConexion();
 		} else {
 			responseDto.setCodigo("Error");
 			responseDto.setMensaje("Error al guardar lista de chequeo");
 		}
 		return responseDto;
-	}
-
-	private void cerrarConexion() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT pg_terminate_backend(pg_stat_activity.pid)"
-				+ " FROM pg_stat_activity"
-				+ " WHERE datname = 'd93gst7a45fh1m'\r\n"
-				+ "  AND pid <> pg_backend_pid()");
-		System.out.println(entityManager.createNativeQuery(sql.toString()));
-		
 	}
 
 	private DetalleListaChequeo convertirDtoToEntidadDetalle(DetalleListaChequeoDto detalleDto) {
