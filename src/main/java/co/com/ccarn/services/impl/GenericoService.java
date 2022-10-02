@@ -28,7 +28,9 @@ public class GenericoService {
 			sql.append(" order by ").append(dto.getCampoOrden()).append(" ").append(dto.getOrden());
 		}
 		Query query = em.createQuery(sql.toString());
-		return query.setFirstResult(dto.getPagina()).setMaxResults(dto.getCantidad()).getResultList();
+		List<?> list = query.setFirstResult(dto.getPagina()).setMaxResults(dto.getCantidad()).getResultList();
+		cerrarConexion();
+		return list;
 	}
 
 	@Transactional
@@ -39,7 +41,18 @@ public class GenericoService {
 			sql.append(" where ").append(dto.getWhere());
 		}
 		Query query = em.createQuery(sql.toString());
-		return ((Number) query.getSingleResult()).longValue();
+		long cont = ((Number) query.getSingleResult()).longValue();
+		cerrarConexion();
+		return cont;
+	}
+	
+	private void cerrarConexion() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT pg_terminate_backend(pg_stat_activity.pid)"
+				+ " FROM pg_stat_activity"
+				+ " WHERE datname = 'ccarn'\r\n"
+				+ "  AND pid <> pg_backend_pid()");
+		System.out.println(em.createNativeQuery(sql.toString()));
 	}
 
 }

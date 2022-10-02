@@ -1,5 +1,7 @@
 package co.com.ccarn.services.impl;
 
+import javax.persistence.EntityManager;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,9 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 	
 	@Autowired
 	private DetalleListaChequeoRepository detalleListaChequeoRepository;
+	
+	@Autowired
+	private EntityManager entityManager;
 
 	@Override
 	public ResponseDto guardarEncabezadoListaChequeo(ListaChequeoDto listaChequeoDto) {
@@ -39,6 +44,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 			responseDto.setCodigo("Error");
 			responseDto.setMensaje("Error al guardar encabezado");
 			e.printStackTrace();
+			cerrarConexion();
 			return responseDto;
 		}
 		if (listaChequeoGuardado != null) {
@@ -50,6 +56,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 				responseDto.setCodigo("Error");
 				responseDto.setMensaje("Error al guardar el concepto");
 				e.printStackTrace();
+				cerrarConexion();
 				return responseDto;
 			}
 			for (DetalleListaChequeoDto detalleDto : listaChequeoDto.getDetalle()) {
@@ -61,16 +68,27 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 					responseDto.setCodigo("Error");
 					responseDto.setMensaje("Error al guardar el detalle");
 					e.printStackTrace();
+					cerrarConexion();
 					return responseDto;
 				}
 			}
 			responseDto.setCodigo("Informativo");
 			responseDto.setMensaje("Se guardó correctamente la lista de chequeo, " + listaChequeoGuardado.getId());
+			cerrarConexion();
 		} else {
 			responseDto.setCodigo("Error");
 			responseDto.setMensaje("Error al guardar lista de chequeo");
 		}
 		return responseDto;
+	}
+
+	private void cerrarConexion() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT pg_terminate_backend(pg_stat_activity.pid)"
+				+ " FROM pg_stat_activity"
+				+ " WHERE datname = 'ccarn'\r\n"
+				+ "  AND pid <> pg_backend_pid()");
+		System.out.println(entityManager.createNativeQuery(sql.toString()));
 	}
 
 	private DetalleListaChequeo convertirDtoToEntidadDetalle(DetalleListaChequeoDto detalleDto) {
