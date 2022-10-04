@@ -1,6 +1,6 @@
 package co.com.ccarn.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,7 +53,7 @@ public class DetalleAndrologico {
 	private String eyaculacion;
 	
 	@Column(name="fecha_nacimiento")
-	private Timestamp fechaNacimiento;
+	private Date fechaNacimiento;
 	
 	@Column(name="informacion_animal")
 	private String informacionAnimal;

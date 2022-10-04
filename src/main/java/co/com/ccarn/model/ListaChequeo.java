@@ -1,6 +1,6 @@
 package co.com.ccarn.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -61,10 +61,10 @@ public class ListaChequeo {
 	
 	private String especie;
 	
-	private Timestamp fecha;
+	private Date fecha;
 	
 	@Column(name="fecha_auditoria")
-	private Timestamp fechaAuditoria;
+	private Date fechaAuditoria;
 	
 	private String latitud;
 	

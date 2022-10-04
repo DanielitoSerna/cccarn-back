@@ -1,6 +1,6 @@
 package co.com.ccarn.dtos;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ public class FormatoDto {
 
 	private String departamento;
 
-	private Timestamp fecha;
+	private Date fecha;
 
 	private String municipio;
 

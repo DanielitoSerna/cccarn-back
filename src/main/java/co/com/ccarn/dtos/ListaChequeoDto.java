@@ -1,6 +1,6 @@
 package co.com.ccarn.dtos;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -44,9 +44,9 @@ public class ListaChequeoDto {
 
 	private String especie;
 
-	private Timestamp fecha;
+	private Date fecha;
 
-	private Timestamp fechaAuditoria;
+	private Date fechaAuditoria;
 
 	private String latitud;
 

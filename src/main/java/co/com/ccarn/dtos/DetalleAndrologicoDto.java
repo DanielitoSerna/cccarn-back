@@ -1,6 +1,6 @@
 package co.com.ccarn.dtos;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +33,7 @@ public class DetalleAndrologicoDto {
 
 	private String eyaculacion;
 
-	private Timestamp fechaNacimiento;
+	private Date fechaNacimiento;
 
 	private String informacionAnimal;
 

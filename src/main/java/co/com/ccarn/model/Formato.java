@@ -1,6 +1,6 @@
 package co.com.ccarn.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,7 +30,7 @@ public class Formato {
 	
 	private String departamento;
 	
-	private Timestamp fecha;
+	private Date fecha;
 	
 	private String municipio;
 	
