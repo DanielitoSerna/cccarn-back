@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -75,9 +77,11 @@ public class Formato {
 	@Column(name="tecnico_responsable_uno")
 	private String tecnicoResponsableUno;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="formatoBean")
 	private List<DetalleAndrologico> detalleAndrologicos;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="formatoBean")
 	private List<DetalleFormato> detalleFormatos;
 	
