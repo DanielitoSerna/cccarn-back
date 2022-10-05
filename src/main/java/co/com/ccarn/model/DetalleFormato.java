@@ -36,9 +36,6 @@ public class DetalleFormato {
 	
 	private String embrion;
 	
-	@Column(name="empaque_embriones")
-	private String empaqueEmbriones;
-	
 	private String er;
 	
 	private Date fecha;
@@ -50,12 +47,6 @@ public class DetalleFormato {
 	private String g3;
 	
 	private String hora;
-	
-	@Column(name="hora_final")
-	private String horaFinal;
-	
-	@Column(name="hora_inicio")
-	private String horaInicio;
 	
 	private Integer iatf;
 	
@@ -134,8 +125,6 @@ public class DetalleFormato {
 	
 	@Column(name="total_registros")
 	private String totalRegistros;
-	
-	private String transferidor;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="formato")

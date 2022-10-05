@@ -23,8 +23,6 @@ public class DetalleFormatoDto {
 	
 	private String embrion;
 	
-	private String empaqueEmbriones;
-	
 	private String er;
 	
 	private Date fecha;
@@ -36,10 +34,6 @@ public class DetalleFormatoDto {
 	private String g3;
 	
 	private String hora;
-	
-	private String horaFinal;
-	
-	private String horaInicio;
 	
 	private Integer iatf;
 	
@@ -100,8 +94,6 @@ public class DetalleFormatoDto {
 	private String total;
 	
 	private String totalRegistros;
-	
-	private String transferidor;
 	
 	private FormatoDto formatoBean;
 
