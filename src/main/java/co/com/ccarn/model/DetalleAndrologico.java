@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -137,7 +137,7 @@ public class DetalleAndrologico {
 	@Column(name="volumen_post_descongelacion")
 	private String volumenPostDescongelacion;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name="formato")
 	private Formato formatoBean;
 

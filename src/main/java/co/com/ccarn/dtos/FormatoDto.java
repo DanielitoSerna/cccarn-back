@@ -52,7 +52,7 @@ public class FormatoDto {
 
 	private String tecnicoResponsableUno;
 
-	private List<DetalleAndrologicoDto> detalleAndrologicos;
+	private DetalleAndrologicoDto detalleAndrologico;
 
 	private List<DetalleFormatoDto> detalleFormatos;
 
