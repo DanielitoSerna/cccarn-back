@@ -29,7 +29,7 @@ public class GenericoService {
 		}
 		Query query = em.createQuery(sql.toString());
 		List<?> list = query.setFirstResult(dto.getPagina()).setMaxResults(dto.getCantidad()).getResultList();
-		cerrarConexion();
+//		cerrarConexion();
 		return list;
 	}
 
@@ -42,18 +42,18 @@ public class GenericoService {
 		}
 		Query query = em.createQuery(sql.toString());
 		long cont = ((Number) query.getSingleResult()).longValue();
-		cerrarConexion();
+//		cerrarConexion();
 		return cont;
 	}
 	
-	private void cerrarConexion() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT pg_terminate_backend(pg_stat_activity.pid)"
-				+ " FROM pg_stat_activity"
-				+ " WHERE datname = 'd93gst7a45fh1m'\r\n"
-				+ "  AND pid <> pg_backend_pid()");
-		Query query = em.createNativeQuery(sql.toString());
-		System.out.println(query.getResultList());
-	}
+//	private void cerrarConexion() {
+//		StringBuilder sql = new StringBuilder();
+//		sql.append("SELECT pg_terminate_backend(pg_stat_activity.pid)"
+//				+ " FROM pg_stat_activity"
+//				+ " WHERE datname = 'd93gst7a45fh1m'\r\n"
+//				+ "  AND pid <> pg_backend_pid()");
+//		Query query = em.createNativeQuery(sql.toString());
+//		System.out.println(query.getResultList());
+//	}
 
 }
