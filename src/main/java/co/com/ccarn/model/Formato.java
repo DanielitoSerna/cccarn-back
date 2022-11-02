@@ -78,6 +78,17 @@ public class Formato {
 	@Column(name="tecnico_responsable_uno")
 	private String tecnicoResponsableUno;
 	
+	@Column(name = "fecha_recomendacion")
+	private Date fechaRecomendacion;
+	
+	@Column(name = "numero_visita")
+	private String numeroVisita;
+	
+	@Column(name = "componente_asistencia_tecnica")
+	private String componenteAsistenciaTecnica;
+	
+	private String recomendacion;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy="formatoBean")
 	private DetalleAndrologico detalleAndrologico;
