@@ -95,14 +95,6 @@ public class DetalleFormatoDto {
 	
 	private String totalRegistros;
 	
-	private Date fechaRecomendacion;
-	
-	private String numeroVisita;
-	
-	private String componenteAsistenciaTecnica;
-	
-	private String recomendacion;
-	
 	private FormatoDto formatoBean;
 
 }

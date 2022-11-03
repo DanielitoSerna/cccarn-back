@@ -52,6 +52,14 @@ public class FormatoDto {
 
 	private String tecnicoResponsableUno;
 
+	private Date fechaRecomendacion;
+
+	private String numeroVisita;
+
+	private String componenteAsistenciaTecnica;
+
+	private String recomendacion;
+
 	private DetalleAndrologicoDto detalleAndrologico;
 
 	private List<DetalleFormatoDto> detalleFormatos;
