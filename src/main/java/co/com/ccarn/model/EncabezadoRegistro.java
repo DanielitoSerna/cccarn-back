@@ -68,6 +68,9 @@ public class EncabezadoRegistro {
 	
 	private String vereda;
 	
+	@Column(name = "tipo_formato")
+	private String tipoFormato;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="encabezadoRegistroBean")
 	private List<Registro> registros;

@@ -50,6 +50,8 @@ public class EncabezadoRegistroDto {
 	
 	private String vereda;
 	
+	private String tipoFormato;
+	
 	private List<RegistroDto> registros;
 
 }
