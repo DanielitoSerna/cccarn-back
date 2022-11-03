@@ -138,6 +138,8 @@ public class DetalleFormato {
 	
 	private String cp;
 	
+	private String hallazgo;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="formato")
 	private Formato formatoBean;
