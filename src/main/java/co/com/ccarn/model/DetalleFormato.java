@@ -126,6 +126,18 @@ public class DetalleFormato {
 	@Column(name="total_registros")
 	private String totalRegistros;
 	
+	private String color;
+	
+	@Column(name = "edad_meses")
+	private String edadMeses;
+	
+	@Column(name = "numero_partos")
+	private String numeroPartos;
+	
+	private String an;
+	
+	private String cp;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="formato")
 	private Formato formatoBean;
