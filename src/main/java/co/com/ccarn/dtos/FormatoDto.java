@@ -60,6 +60,12 @@ public class FormatoDto {
 	private String componenteAsistenciaTecnica;
 
 	private String recomendacion;
+	
+	private String numeroReceptorasSeleccionadas;
+
+	private String numeroReceptorasTransfericas;
+	
+	private String medioAspiracion;
 
 	private DetalleAndrologicoDto detalleAndrologico;
 

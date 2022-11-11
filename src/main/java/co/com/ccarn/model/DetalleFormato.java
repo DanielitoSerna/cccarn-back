@@ -51,9 +51,6 @@ public class DetalleFormato {
 	
 	private Integer iatf;
 	
-	@Column(name="medio_aspiracion")
-	private String medioAspiracion;
-	
 	private String miv;
 	
 	@Column(name="nombre_donadora")
@@ -79,12 +76,6 @@ public class DetalleFormato {
 	
 	@Column(name="numero_identificacion_toro")
 	private String numeroIdentificacionToro;
-	
-	@Column(name="numero_receptoras_seleccionadas")
-	private String numeroReceptorasSeleccionadas;
-	
-	@Column(name="numero_receptoras_transfericas")
-	private String numeroReceptorasTransfericas;
 	
 	@Column(name="numero_toro")
 	private String numeroToro;

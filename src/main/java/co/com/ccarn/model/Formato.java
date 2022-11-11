@@ -90,6 +90,15 @@ public class Formato {
 	
 	private String recomendacion;
 	
+	@Column(name="medio_aspiracion")
+	private String medioAspiracion;
+
+	@Column(name="numero_receptoras_seleccionadas")
+	private String numeroReceptorasSeleccionadas;
+	
+	@Column(name="numero_receptoras_transfericas")
+	private String numeroReceptorasTransfericas;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy="formatoBean")
 	private DetalleAndrologico detalleAndrologico;

@@ -38,8 +38,6 @@ public class DetalleFormatoDto {
 
 	private Integer iatf;
 
-	private String medioAspiracion;
-
 	private String miv;
 
 	private String nombreDonadora;
@@ -57,10 +55,6 @@ public class DetalleFormatoDto {
 	private String numeroIdentificacionReceptora;
 
 	private String numeroIdentificacionToro;
-
-	private String numeroReceptorasSeleccionadas;
-
-	private String numeroReceptorasTransfericas;
 
 	private String numeroToro;
 
