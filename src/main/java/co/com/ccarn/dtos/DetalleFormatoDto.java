@@ -1,5 +1,6 @@
 package co.com.ccarn.dtos;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -33,7 +34,7 @@ public class DetalleFormatoDto {
 
 	private String g3;
 
-	private String hora;
+	private Timestamp hora;
 
 	private Integer iatf;
 

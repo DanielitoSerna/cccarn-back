@@ -1,5 +1,6 @@
 package co.com.ccarn.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,7 +47,7 @@ public class DetalleFormato {
 	
 	private String g3;
 	
-	private String hora;
+	private Timestamp hora;
 	
 	private Integer iatf;
 	

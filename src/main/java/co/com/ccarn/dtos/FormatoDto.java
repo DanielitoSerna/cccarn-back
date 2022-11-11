@@ -1,5 +1,6 @@
 package co.com.ccarn.dtos;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -40,9 +41,9 @@ public class FormatoDto {
 
 	private String transferidor;
 
-	private String horaInicio;
+	private Timestamp horaInicio;
 
-	private String horaFinal;
+	private Timestamp horaFinal;
 
 	private String tarjetaProfesionalDos;
 

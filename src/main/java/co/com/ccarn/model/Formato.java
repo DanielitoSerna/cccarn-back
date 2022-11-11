@@ -1,5 +1,6 @@
 package co.com.ccarn.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -61,10 +62,10 @@ public class Formato {
 	private String transferidor;
 	
 	@Column(name = "hora_inicio")
-	private String horaInicio;
+	private Timestamp horaInicio;
 	
 	@Column(name = "hora_final")
-	private String horaFinal;
+	private Timestamp horaFinal;
 	
 	@Column(name="tarjeta_profesional_dos")
 	private String tarjetaProfesionalDos;
