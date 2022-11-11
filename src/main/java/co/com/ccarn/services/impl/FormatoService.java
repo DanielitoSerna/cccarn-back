@@ -51,7 +51,6 @@ public class FormatoService implements IFormatoService {
 				for (DetalleFormatoDto detalleFormatoDto : formatoDto.getDetalleFormatos()) {
 					DetalleFormato detalleFormato = convertirDtoToEntidadDetalleFormato(detalleFormatoDto);
 					detalleFormato.setFormatoBean(formatoGuardado);
-					;
 					try {
 						detalleFormatoRepository.save(detalleFormato);
 					} catch (Exception e) {
