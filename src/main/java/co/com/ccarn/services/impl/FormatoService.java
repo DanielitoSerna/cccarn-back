@@ -1,5 +1,7 @@
 package co.com.ccarn.services.impl;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,70 +36,152 @@ public class FormatoService implements IFormatoService {
 	@Override
 	public ResponseDto guardarFormato(FormatoDto formatoDto) {
 		ResponseDto responseDto = new ResponseDto();
-		Formato formato = convertirDtoToEntidadFormato(formatoDto);
-		formato.setDetalleAndrologico(null);
-		Formato formatoGuardado = null;
-		try {
-			formatoGuardado = formatoRepository.save(formato);
-		} catch (Exception e) {
-			responseDto.setCodigo("Error");
-			responseDto.setMensaje("Error al guardar encabezado");
-			e.printStackTrace();
-			cerrarConexionService.cerrarConexion();
-			return responseDto;
-		}
-		if (formatoGuardado != null) {
-			if (formatoDto.getDetalleFormatos() != null && formatoDto.getDetalleFormatos().size() > 0) {
-				for (DetalleFormatoDto detalleFormatoDto : formatoDto.getDetalleFormatos()) {
-					DetalleFormato detalleFormato = convertirDtoToEntidadDetalleFormato(detalleFormatoDto);
-					detalleFormato.setFormatoBean(formatoGuardado);
-					try {
-						detalleFormatoRepository.save(detalleFormato);
-					} catch (Exception e) {
-						responseDto.setCodigo("Error");
-						responseDto.setMensaje("Error al guardar el detalle del formato");
-						e.printStackTrace();
-						cerrarConexionService.cerrarConexion();
-						return responseDto;
-					}
-				}
-				if (formatoDto.getDetalleAndrologico() != null) {
-					DetalleAndrologico detalleAndrologico = convertirDtoToEntidadDetalleAndrologico(
-							formatoDto.getDetalleAndrologico());
-					detalleAndrologico.setFormatoBean(formatoGuardado);
-					try {
-						detalleAndrologicoRepository.save(detalleAndrologico);
-					} catch (Exception e) {
-						responseDto.setCodigo("Error");
-						responseDto.setMensaje("Error al guardar el detalle andrológico");
-						e.printStackTrace();
-						cerrarConexionService.cerrarConexion();
-						return responseDto;
-					}
-				}
-			} else {
-				if (formatoDto.getDetalleAndrologico() != null) {
-					DetalleAndrologico detalleAndrologico = convertirDtoToEntidadDetalleAndrologico(
-							formatoDto.getDetalleAndrologico());
-					detalleAndrologico.setFormatoBean(formatoGuardado);
-					try {
-						detalleAndrologicoRepository.save(detalleAndrologico);
-					} catch (Exception e) {
-						responseDto.setCodigo("Error");
-						responseDto.setMensaje("Error al guardar el detalle andrológico");
-						e.printStackTrace();
-						cerrarConexionService.cerrarConexion();
-						return responseDto;
-					}
-				}
+		if (formatoDto.getId() != null) {
+			Formato formato = convertirDtoToEntidadFormato(formatoDto);
+			formato.setDetalleAndrologico(null);
+			Formato formatoGuardado = null;
+			try {
+				formatoGuardado = formatoRepository.save(formato);
+			} catch (Exception e) {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar encabezado");
+				e.printStackTrace();
+				cerrarConexionService.cerrarConexion();
+				return responseDto;
 			}
-			responseDto.setCodigo("Informativo");
-			responseDto.setMensaje("Se guardó correctamente el formato, " + formatoGuardado.getId());
-			cerrarConexionService.cerrarConexion();
+			if (formatoGuardado != null) {
+				if (formatoGuardado.getId().equals(formato.getId())) {
+					try {
+						List<DetalleFormato> detalleFormatos =  detalleFormatoRepository.findByFormatoBean(formato);
+						for (DetalleFormato detalleFormato : detalleFormatos) {
+							detalleFormatoRepository.delete(detalleFormato);
+						}
+					} catch (Exception e) {
+						responseDto.setCodigo("Error");
+						responseDto.setMensaje("Error al actualizar formato");
+						e.printStackTrace();
+						cerrarConexionService.cerrarConexion();
+						return responseDto;
+					}
+				}
+				if (formatoDto.getDetalleFormatos() != null && formatoDto.getDetalleFormatos().size() > 0) {
+					for (DetalleFormatoDto detalleFormatoDto : formatoDto.getDetalleFormatos()) {
+						DetalleFormato detalleFormato = convertirDtoToEntidadDetalleFormato(detalleFormatoDto);
+						detalleFormato.setFormatoBean(formatoGuardado);
+						try {
+							detalleFormatoRepository.save(detalleFormato);
+						} catch (Exception e) {
+							responseDto.setCodigo("Error");
+							responseDto.setMensaje("Error al guardar el detalle del formato");
+							e.printStackTrace();
+							cerrarConexionService.cerrarConexion();
+							return responseDto;
+						}
+					}
+					if (formatoDto.getDetalleAndrologico() != null) {
+						DetalleAndrologico detalleAndrologico = convertirDtoToEntidadDetalleAndrologico(
+								formatoDto.getDetalleAndrologico());
+						detalleAndrologico.setFormatoBean(formatoGuardado);
+						try {
+							detalleAndrologicoRepository.save(detalleAndrologico);
+						} catch (Exception e) {
+							responseDto.setCodigo("Error");
+							responseDto.setMensaje("Error al guardar el detalle andrológico");
+							e.printStackTrace();
+							cerrarConexionService.cerrarConexion();
+							return responseDto;
+						}
+					}
+				} else {
+					if (formatoDto.getDetalleAndrologico() != null) {
+						DetalleAndrologico detalleAndrologico = convertirDtoToEntidadDetalleAndrologico(
+								formatoDto.getDetalleAndrologico());
+						detalleAndrologico.setFormatoBean(formatoGuardado);
+						try {
+							detalleAndrologicoRepository.save(detalleAndrologico);
+						} catch (Exception e) {
+							responseDto.setCodigo("Error");
+							responseDto.setMensaje("Error al guardar el detalle andrológico");
+							e.printStackTrace();
+							cerrarConexionService.cerrarConexion();
+							return responseDto;
+						}
+					}
+				}
+				responseDto.setCodigo("Informativo");
+				responseDto.setMensaje("Se guardó correctamente el formato, " + formatoGuardado.getId());
+				cerrarConexionService.cerrarConexion();
+			} else {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al actualizar el formato");
+			}
 		} else {
-			responseDto.setCodigo("Error");
-			responseDto.setMensaje("Error al guardar el formato");
+			Formato formato = convertirDtoToEntidadFormato(formatoDto);
+			formato.setDetalleAndrologico(null);
+			Formato formatoGuardado = null;
+			try {
+				formatoGuardado = formatoRepository.save(formato);
+			} catch (Exception e) {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar encabezado");
+				e.printStackTrace();
+				cerrarConexionService.cerrarConexion();
+				return responseDto;
+			}
+			if (formatoGuardado != null) {
+				if (formatoDto.getDetalleFormatos() != null && formatoDto.getDetalleFormatos().size() > 0) {
+					for (DetalleFormatoDto detalleFormatoDto : formatoDto.getDetalleFormatos()) {
+						DetalleFormato detalleFormato = convertirDtoToEntidadDetalleFormato(detalleFormatoDto);
+						detalleFormato.setFormatoBean(formatoGuardado);
+						try {
+							detalleFormatoRepository.save(detalleFormato);
+						} catch (Exception e) {
+							responseDto.setCodigo("Error");
+							responseDto.setMensaje("Error al guardar el detalle del formato");
+							e.printStackTrace();
+							cerrarConexionService.cerrarConexion();
+							return responseDto;
+						}
+					}
+					if (formatoDto.getDetalleAndrologico() != null) {
+						DetalleAndrologico detalleAndrologico = convertirDtoToEntidadDetalleAndrologico(
+								formatoDto.getDetalleAndrologico());
+						detalleAndrologico.setFormatoBean(formatoGuardado);
+						try {
+							detalleAndrologicoRepository.save(detalleAndrologico);
+						} catch (Exception e) {
+							responseDto.setCodigo("Error");
+							responseDto.setMensaje("Error al guardar el detalle andrológico");
+							e.printStackTrace();
+							cerrarConexionService.cerrarConexion();
+							return responseDto;
+						}
+					}
+				} else {
+					if (formatoDto.getDetalleAndrologico() != null) {
+						DetalleAndrologico detalleAndrologico = convertirDtoToEntidadDetalleAndrologico(
+								formatoDto.getDetalleAndrologico());
+						detalleAndrologico.setFormatoBean(formatoGuardado);
+						try {
+							detalleAndrologicoRepository.save(detalleAndrologico);
+						} catch (Exception e) {
+							responseDto.setCodigo("Error");
+							responseDto.setMensaje("Error al guardar el detalle andrológico");
+							e.printStackTrace();
+							cerrarConexionService.cerrarConexion();
+							return responseDto;
+						}
+					}
+				}
+				responseDto.setCodigo("Informativo");
+				responseDto.setMensaje("Se guardó correctamente el formato, " + formatoGuardado.getId());
+				cerrarConexionService.cerrarConexion();
+			} else {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar el formato");
+			}
 		}
+
 		return responseDto;
 	}
 
