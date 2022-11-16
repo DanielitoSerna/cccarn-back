@@ -12,32 +12,48 @@ import co.com.ccarn.services.ICaracterizacionService;
 
 @Service
 public class CaracterizacionService implements ICaracterizacionService {
-	
+
 	@Autowired
 	private CaracterizacionRepository caracterizacionRepository;
-	
+
 	@Autowired
 	private CerrarConexionService cerrarConexionService;
 
 	@Override
 	public ResponseDto guardar(CaracterizacionDto caracterizacionDto) {
 		ResponseDto responseDto = new ResponseDto();
-		Caracterizacion caracterizacion = convertirDtoToEntidad(caracterizacionDto);
-		try {
-			caracterizacionRepository.save(caracterizacion);
-			responseDto.setCodigo("Informativo");
-			responseDto.setMensaje("Se guardó correctamente la caracterización");
-			cerrarConexionService.cerrarConexion();
-		} catch (Exception e) {
-			responseDto.setCodigo("Error");
-			responseDto.setMensaje("Error al guardar la caracterización");
-			e.printStackTrace();
-			cerrarConexionService.cerrarConexion();
-			return responseDto;
+		if (caracterizacionDto.getId() != null) {
+			Caracterizacion caracterizacion = convertirDtoToEntidad(caracterizacionDto);
+			try {
+				caracterizacionRepository.save(caracterizacion);
+				responseDto.setCodigo("Informativo");
+				responseDto.setMensaje("Se guardó correctamente la caracterización");
+				cerrarConexionService.cerrarConexion();
+			} catch (Exception e) {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar la caracterización");
+				e.printStackTrace();
+				cerrarConexionService.cerrarConexion();
+				return responseDto;
+			}
+		} else  {
+			Caracterizacion caracterizacion = convertirDtoToEntidad(caracterizacionDto);
+			try {
+				caracterizacionRepository.save(caracterizacion);
+				responseDto.setCodigo("Informativo");
+				responseDto.setMensaje("Se guardó correctamente la caracterización");
+				cerrarConexionService.cerrarConexion();
+			} catch (Exception e) {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar la caracterización");
+				e.printStackTrace();
+				cerrarConexionService.cerrarConexion();
+				return responseDto;
+			}
 		}
 		return responseDto;
 	}
-	
+
 	private Caracterizacion convertirDtoToEntidad(CaracterizacionDto caracterizacionDto) {
 		ModelMapper modelMapper = new ModelMapper();
 		Caracterizacion caracterizacion = modelMapper.map(caracterizacionDto, Caracterizacion.class);
