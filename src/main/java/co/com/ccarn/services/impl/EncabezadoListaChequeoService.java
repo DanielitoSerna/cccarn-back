@@ -1,5 +1,7 @@
 package co.com.ccarn.services.impl;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,61 +23,138 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 
 	@Autowired
 	private EncabezadoListaChequeoRepository encabezadoListaChequeoRepository;
-	
+
 	@Autowired
 	private ConceptoListaChequeoRepository conceptoListaChequeoRepository;
-	
+
 	@Autowired
 	private DetalleListaChequeoRepository detalleListaChequeoRepository;
-	
+
 	@Autowired
 	private CerrarConexionService cerrarConexionService;
-	
+
 	@Override
 	public ResponseDto guardarEncabezadoListaChequeo(ListaChequeoDto listaChequeoDto) {
 		ResponseDto responseDto = new ResponseDto();
-		ListaChequeo listaChequeo = convertirDtoToEntidadEncabezado(listaChequeoDto);
-		ListaChequeo listaChequeoGuardado = null;
-		try {
-			listaChequeoGuardado = encabezadoListaChequeoRepository.save(listaChequeo);
-		} catch (Exception e) {
-			responseDto.setCodigo("Error");
-			responseDto.setMensaje("Error al guardar encabezado");
-			e.printStackTrace();
-			cerrarConexionService.cerrarConexion();
-			return responseDto;
-		}
-		if (listaChequeoGuardado != null) {
-			ConceptoListaChequeo conceptoListaChequeo = convertirDtoToEntidadConcepto(listaChequeoDto.getConcepto());
-			conceptoListaChequeo.setListaChequeoBean(listaChequeoGuardado);
+		if (listaChequeoDto.getId() != null) {
+			ListaChequeo listaChequeo = convertirDtoToEntidadEncabezado(listaChequeoDto);
+			ListaChequeo listaChequeoGuardado = null;
 			try {
-				conceptoListaChequeoRepository.save(conceptoListaChequeo);
+				listaChequeoGuardado = encabezadoListaChequeoRepository.save(listaChequeo);
 			} catch (Exception e) {
 				responseDto.setCodigo("Error");
-				responseDto.setMensaje("Error al guardar el concepto");
+				responseDto.setMensaje("Error al guardar encabezado");
 				e.printStackTrace();
 				cerrarConexionService.cerrarConexion();
 				return responseDto;
 			}
-			for (DetalleListaChequeoDto detalleDto : listaChequeoDto.getDetalle()) {
-				DetalleListaChequeo detalleListaChequeo = convertirDtoToEntidadDetalle(detalleDto);
-				detalleListaChequeo.setListaChequeoBean(listaChequeoGuardado);
+			if (listaChequeoGuardado != null) {
+				if (listaChequeoGuardado.getId().equals(listaChequeo.getId())) {
+					try {
+						List<ConceptoListaChequeo> listaChequeos = conceptoListaChequeoRepository
+								.findByListaChequeoBean(listaChequeo);
+						for (ConceptoListaChequeo conceptoListaChequeo : listaChequeos) {
+							conceptoListaChequeoRepository.delete(conceptoListaChequeo);
+						}
+					} catch (Exception e) {
+						responseDto.setCodigo("Error");
+						responseDto.setMensaje("Error al actualizar lista");
+						e.printStackTrace();
+						cerrarConexionService.cerrarConexion();
+						return responseDto;
+					}
+					try {
+						List<DetalleListaChequeo> listaChequeos = detalleListaChequeoRepository
+								.findByListaChequeoBean(listaChequeo);
+						for (DetalleListaChequeo detalleListaChequeo : listaChequeos) {
+							detalleListaChequeoRepository.delete(detalleListaChequeo);
+						}
+					} catch (Exception e) {
+						responseDto.setCodigo("Error");
+						responseDto.setMensaje("Error al actualizar lista");
+						e.printStackTrace();
+						cerrarConexionService.cerrarConexion();
+						return responseDto;
+					}
+				}
+				ConceptoListaChequeo conceptoListaChequeo = convertirDtoToEntidadConcepto(
+						listaChequeoDto.getConcepto());
+				conceptoListaChequeo.setListaChequeoBean(listaChequeoGuardado);
 				try {
-					detalleListaChequeoRepository.save(detalleListaChequeo);
+					conceptoListaChequeoRepository.save(conceptoListaChequeo);
 				} catch (Exception e) {
 					responseDto.setCodigo("Error");
-					responseDto.setMensaje("Error al guardar el detalle");
+					responseDto.setMensaje("Error al guardar el concepto");
 					e.printStackTrace();
 					cerrarConexionService.cerrarConexion();
 					return responseDto;
 				}
+				for (DetalleListaChequeoDto detalleDto : listaChequeoDto.getDetalle()) {
+					DetalleListaChequeo detalleListaChequeo = convertirDtoToEntidadDetalle(detalleDto);
+					detalleListaChequeo.setListaChequeoBean(listaChequeoGuardado);
+					try {
+						detalleListaChequeoRepository.save(detalleListaChequeo);
+					} catch (Exception e) {
+						responseDto.setCodigo("Error");
+						responseDto.setMensaje("Error al guardar el detalle");
+						e.printStackTrace();
+						cerrarConexionService.cerrarConexion();
+						return responseDto;
+					}
+				}
+				responseDto.setCodigo("Informativo");
+				responseDto
+						.setMensaje("Se actualizó correctamente la lista de chequeo, " + listaChequeoGuardado.getId());
+				cerrarConexionService.cerrarConexion();
+			} else {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar lista de chequeo");
 			}
-			responseDto.setCodigo("Informativo");
-			responseDto.setMensaje("Se guardó correctamente la lista de chequeo, " + listaChequeoGuardado.getId());
-			cerrarConexionService.cerrarConexion();
 		} else {
-			responseDto.setCodigo("Error");
-			responseDto.setMensaje("Error al guardar lista de chequeo");
+			ListaChequeo listaChequeo = convertirDtoToEntidadEncabezado(listaChequeoDto);
+			ListaChequeo listaChequeoGuardado = null;
+			try {
+				listaChequeoGuardado = encabezadoListaChequeoRepository.save(listaChequeo);
+			} catch (Exception e) {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar encabezado");
+				e.printStackTrace();
+				cerrarConexionService.cerrarConexion();
+				return responseDto;
+			}
+			if (listaChequeoGuardado != null) {
+				ConceptoListaChequeo conceptoListaChequeo = convertirDtoToEntidadConcepto(
+						listaChequeoDto.getConcepto());
+				conceptoListaChequeo.setListaChequeoBean(listaChequeoGuardado);
+				try {
+					conceptoListaChequeoRepository.save(conceptoListaChequeo);
+				} catch (Exception e) {
+					responseDto.setCodigo("Error");
+					responseDto.setMensaje("Error al guardar el concepto");
+					e.printStackTrace();
+					cerrarConexionService.cerrarConexion();
+					return responseDto;
+				}
+				for (DetalleListaChequeoDto detalleDto : listaChequeoDto.getDetalle()) {
+					DetalleListaChequeo detalleListaChequeo = convertirDtoToEntidadDetalle(detalleDto);
+					detalleListaChequeo.setListaChequeoBean(listaChequeoGuardado);
+					try {
+						detalleListaChequeoRepository.save(detalleListaChequeo);
+					} catch (Exception e) {
+						responseDto.setCodigo("Error");
+						responseDto.setMensaje("Error al guardar el detalle");
+						e.printStackTrace();
+						cerrarConexionService.cerrarConexion();
+						return responseDto;
+					}
+				}
+				responseDto.setCodigo("Informativo");
+				responseDto.setMensaje("Se guardó correctamente la lista de chequeo, " + listaChequeoGuardado.getId());
+				cerrarConexionService.cerrarConexion();
+			} else {
+				responseDto.setCodigo("Error");
+				responseDto.setMensaje("Error al guardar lista de chequeo");
+			}
 		}
 		return responseDto;
 	}
