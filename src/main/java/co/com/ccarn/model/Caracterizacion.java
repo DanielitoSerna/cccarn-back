@@ -165,11 +165,17 @@ public class Caracterizacion {
 	@Column(name="numero_caracterizaacion")
 	private String numeroCaracterizaacion;
 
-	@Column(name="numero_novillo")
-	private String numeroNovillo;
+	@Column(name="numero_novillo_iatf")
+	private String numeroNovilloIatf;
+	
+	@Column(name="numero_novillo_te")
+	private String numeroNovilloTe;
 
-	@Column(name="numero_vacas")
-	private String numeroVacas;
+	@Column(name="numero_vacas_iatf")
+	private String numeroVacasIatf;
+	
+	@Column(name="numero_vacas_te")
+	private String numeroVacasTe;
 
 	private String otro;
 

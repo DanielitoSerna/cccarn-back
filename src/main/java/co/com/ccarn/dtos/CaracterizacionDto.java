@@ -121,9 +121,13 @@ public class CaracterizacionDto {
 
 	private String numeroCaracterizaacion;
 
-	private String numeroNovillo;
+	private String numeroNovilloIatf;
+	
+	private String numeroNovilloTe;
 
-	private String numeroVacas;
+	private String numeroVacasIatf;
+	
+	private String numeroVacasTe;
 
 	private String otro;
 
