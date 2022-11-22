@@ -1,5 +1,6 @@
 package co.com.ccarn.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -133,9 +134,9 @@ public class Caracterizacion {
 	@Column(name="inicio_ceba")
 	private String inicioCeba;
 
-	private String latitud;
+	private BigDecimal latitud;
 
-	private String longitud;
+	private BigDecimal longitud;
 
 	@Column(name="mapa_finca")
 	private Boolean mapaFinca;
@@ -176,6 +177,9 @@ public class Caracterizacion {
 	
 	@Column(name="numero_vacas_te")
 	private String numeroVacasTe;
+	
+	@Column(name = "numero_identificacion")
+	private String numeroIdentificacion;
 
 	private String otro;
 

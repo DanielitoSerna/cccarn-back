@@ -1,5 +1,6 @@
 package co.com.ccarn.dtos;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -97,9 +98,9 @@ public class CaracterizacionDto {
 
 	private String inicioCeba;
 
-	private String latitud;
+	private BigDecimal latitud;
 
-	private String longitud;
+	private BigDecimal longitud;
 
 	private Boolean mapaFinca;
 
@@ -120,6 +121,8 @@ public class CaracterizacionDto {
 	private String nombreSoftware;
 
 	private String numeroCaracterizaacion;
+	
+	private String numeroIdentificacion;
 
 	private String numeroNovilloIatf;
 	
