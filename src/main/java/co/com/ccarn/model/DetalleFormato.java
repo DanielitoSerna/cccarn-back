@@ -49,7 +49,7 @@ public class DetalleFormato {
 	
 	private Timestamp hora;
 	
-	private Integer iatf;
+	private String iatf;
 	
 	private String miv;
 	
@@ -121,10 +121,10 @@ public class DetalleFormato {
 	private String color;
 	
 	@Column(name = "edad_meses")
-	private String edadMeses;
+	private Integer edadMeses;
 	
 	@Column(name = "numero_partos")
-	private String numeroPartos;
+	private Integer numeroPartos;
 	
 	private String an;
 	

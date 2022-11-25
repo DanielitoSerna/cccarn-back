@@ -36,7 +36,7 @@ public class DetalleFormatoDto {
 
 	private Timestamp hora;
 
-	private Integer iatf;
+	private String iatf;
 
 	private String miv;
 
@@ -92,9 +92,9 @@ public class DetalleFormatoDto {
 
 	private String color;
 
-	private String edadMeses;
+	private Integer edadMeses;
 
-	private String numeroPartos;
+	private Integer numeroPartos;
 
 	private String an;
 
