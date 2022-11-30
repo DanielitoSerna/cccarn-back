@@ -84,7 +84,7 @@ public class DetalleFormatoDto {
 
 	private String sx;
 
-	private Integer te;
+	private String te;
 
 	private String total;
 
