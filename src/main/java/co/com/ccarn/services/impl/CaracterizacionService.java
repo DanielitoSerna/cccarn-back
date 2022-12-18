@@ -1,11 +1,17 @@
 package co.com.ccarn.services.impl;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.com.ccarn.dtos.CaracterizacionDto;
 import co.com.ccarn.dtos.ResponseDto;
+import co.com.ccarn.excel.ExcelGeneratorCaracterizacion;
 import co.com.ccarn.model.Caracterizacion;
 import co.com.ccarn.repositories.CaracterizacionRepository;
 import co.com.ccarn.services.ICaracterizacionService;
@@ -52,6 +58,18 @@ public class CaracterizacionService implements ICaracterizacionService {
 			}
 		}
 		return responseDto;
+	}
+	
+	public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=caracterizacion.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Caracterizacion> lista = caracterizacionRepository.findAll();
+        ExcelGeneratorCaracterizacion generator = new ExcelGeneratorCaracterizacion(lista);
+        generator.generateExcelFile(response);
 	}
 
 	private Caracterizacion convertirDtoToEntidad(CaracterizacionDto caracterizacionDto) {
