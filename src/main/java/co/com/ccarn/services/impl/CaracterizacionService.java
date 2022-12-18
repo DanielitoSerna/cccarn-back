@@ -70,6 +70,7 @@ public class CaracterizacionService implements ICaracterizacionService {
         List<Caracterizacion> lista = caracterizacionRepository.findAll();
         ExcelGeneratorCaracterizacion generator = new ExcelGeneratorCaracterizacion(lista);
         generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
 	}
 
 	private Caracterizacion convertirDtoToEntidad(CaracterizacionDto caracterizacionDto) {
