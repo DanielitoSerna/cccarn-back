@@ -1,6 +1,9 @@
 package co.com.ccarn.services.impl;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import co.com.ccarn.dtos.ConceptoListaChequeoDto;
 import co.com.ccarn.dtos.DetalleListaChequeoDto;
 import co.com.ccarn.dtos.ListaChequeoDto;
 import co.com.ccarn.dtos.ResponseDto;
+import co.com.ccarn.excel.ExcelGeneratorBpg;
 import co.com.ccarn.model.ConceptoListaChequeo;
 import co.com.ccarn.model.DetalleListaChequeo;
 import co.com.ccarn.model.ListaChequeo;
@@ -157,6 +161,19 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 			}
 		}
 		return responseDto;
+	}
+	
+	public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=lista_bpg.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<ListaChequeo> lista = encabezadoListaChequeoRepository.findByTipoFormato("BGP");
+        ExcelGeneratorBpg generator = new ExcelGeneratorBpg(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
 	}
 
 	private DetalleListaChequeo convertirDtoToEntidadDetalle(DetalleListaChequeoDto detalleDto) {

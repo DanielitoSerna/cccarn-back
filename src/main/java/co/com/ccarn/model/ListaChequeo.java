@@ -1,5 +1,6 @@
 package co.com.ccarn.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -66,13 +67,13 @@ public class ListaChequeo {
 	@Column(name="fecha_auditoria")
 	private Date fechaAuditoria;
 	
-	private String latitud;
+	private BigDecimal latitud;
 	
 	private String leche;
 	
 	private String levante;
 	
-	private String longitud;
+	private BigDecimal longitud;
 	
 	@Column(name="material_genetico")
 	private String materialGenetico;

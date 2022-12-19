@@ -1,5 +1,6 @@
 package co.com.ccarn.dtos;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -48,13 +49,13 @@ public class ListaChequeoDto {
 
 	private Date fechaAuditoria;
 
-	private String latitud;
+	private BigDecimal latitud;
 
 	private String leche;
 
 	private String levante;
 
-	private String longitud;
+	private BigDecimal longitud;
 
 	private String materialGenetico;
 
