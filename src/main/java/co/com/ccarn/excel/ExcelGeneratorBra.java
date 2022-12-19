@@ -31,7 +31,7 @@ public class ExcelGeneratorBra {
 	}
 	
 	private void writeHeader() {
-		sheet = workbook.createSheet("Recomendaciones");
+		sheet = workbook.createSheet("Registro BRA");
 		Row row = sheet.createRow(0);
 		CellStyle style = workbook.createCellStyle();
 		XSSFFont font = workbook.createFont();

@@ -46,5 +46,10 @@ public class FormatoRest {
 	public void exportIntoExcelFileBra(HttpServletResponse response) throws IOException {
 		formatoService.exportIntoExcelFileBra(response);
 	}
+	
+	@GetMapping("/iatf-excel")
+	public void exportIntoExcelFileIatf(HttpServletResponse response) throws IOException {
+		formatoService.exportIntoExcelFileIatf(response);
+	}
 
 }

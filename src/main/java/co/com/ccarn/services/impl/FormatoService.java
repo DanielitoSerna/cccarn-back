@@ -14,6 +14,7 @@ import co.com.ccarn.dtos.DetalleFormatoDto;
 import co.com.ccarn.dtos.FormatoDto;
 import co.com.ccarn.dtos.ResponseDto;
 import co.com.ccarn.excel.ExcelGeneratorBra;
+import co.com.ccarn.excel.ExcelGeneratorIatf;
 import co.com.ccarn.excel.ExcelGeneratorRecomendacion;
 import co.com.ccarn.model.DetalleAndrologico;
 import co.com.ccarn.model.DetalleFormato;
@@ -230,6 +231,19 @@ public class FormatoService implements IFormatoService {
 
         List<Formato> lista = formatoRepository.findByTipoFormato("BRA");
         ExcelGeneratorBra generator = new ExcelGeneratorBra(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileIatf(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=registro_iatf.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("IATF");
+        ExcelGeneratorIatf generator = new ExcelGeneratorIatf(lista);
         generator.generateExcelFile(response);
         cerrarConexionService.cerrarConexion();
 	}
