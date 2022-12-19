@@ -51,5 +51,30 @@ public class FormatoRest {
 	public void exportIntoExcelFileIatf(HttpServletResponse response) throws IOException {
 		formatoService.exportIntoExcelFileIatf(response);
 	}
+	
+	@GetMapping("/aspiracion-excel")
+	public void exportIntoExcelFileAspiracion(HttpServletResponse response) throws IOException {
+		formatoService.exportIntoExcelFileAspiracion(response);
+	}
+	
+	@GetMapping("/donadoras-excel")
+	public void exportIntoExcelFileDonadora(HttpServletResponse response) throws IOException {
+		formatoService.exportIntoExcelFileDonadora(response);
+	}
+	
+	@GetMapping("/toros-excel")
+	public void exportIntoExcelFileToros(HttpServletResponse response) throws IOException {
+		formatoService.exportIntoExcelFileToros(response);
+	}
+	
+	@GetMapping("/hembras-excel")
+	public void exportIntoExcelFileHembra(HttpServletResponse response) throws IOException {
+		formatoService.exportIntoExcelFileHembras(response);
+	}
+	
+	@GetMapping("/andrologica-excel")
+	public void exportIntoExcelFileAndrologica(HttpServletResponse response) throws IOException {
+		formatoService.exportIntoExcelFileIatf(response);
+	}
 
 }

@@ -13,9 +13,14 @@ import co.com.ccarn.dtos.DetalleAndrologicoDto;
 import co.com.ccarn.dtos.DetalleFormatoDto;
 import co.com.ccarn.dtos.FormatoDto;
 import co.com.ccarn.dtos.ResponseDto;
+import co.com.ccarn.excel.ExcelGeneratorAndrologica;
+import co.com.ccarn.excel.ExcelGeneratorAspiracion;
 import co.com.ccarn.excel.ExcelGeneratorBra;
+import co.com.ccarn.excel.ExcelGeneratorDonadora;
+import co.com.ccarn.excel.ExcelGeneratorHembra;
 import co.com.ccarn.excel.ExcelGeneratorIatf;
 import co.com.ccarn.excel.ExcelGeneratorRecomendacion;
+import co.com.ccarn.excel.ExcelGeneratorToro;
 import co.com.ccarn.model.DetalleAndrologico;
 import co.com.ccarn.model.DetalleFormato;
 import co.com.ccarn.model.Formato;
@@ -244,6 +249,71 @@ public class FormatoService implements IFormatoService {
 
         List<Formato> lista = formatoRepository.findByTipoFormato("IATF");
         ExcelGeneratorIatf generator = new ExcelGeneratorIatf(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileAspiracion(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=aspiracion.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("ASPIRACION");
+        ExcelGeneratorAspiracion generator = new ExcelGeneratorAspiracion(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileDonadora(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=donadoras.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("DOND");
+        ExcelGeneratorDonadora generator = new ExcelGeneratorDonadora(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileToros(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=toros_te.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("TORO");
+        ExcelGeneratorToro generator = new ExcelGeneratorToro(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileHembras(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=hembras.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("TORO");
+        ExcelGeneratorHembra generator = new ExcelGeneratorHembra(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileAndrologica(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=andrologicas.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("TORO");
+        ExcelGeneratorAndrologica generator = new ExcelGeneratorAndrologica(lista);
         generator.generateExcelFile(response);
         cerrarConexionService.cerrarConexion();
 	}
