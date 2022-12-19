@@ -38,8 +38,13 @@ public class EncabezadoListaChequeoRest {
 	}
 	
 	@GetMapping("/bpg-excel")
-	public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
-		encabezadoService.exportIntoExcelFile(response);
+	public void exportIntoExcelFileBpg(HttpServletResponse response) throws IOException {
+		encabezadoService.exportIntoExcelFileBpg(response);
+	}
+	
+	@GetMapping("/asi-excel")
+	public void exportIntoExcelFileAsi(HttpServletResponse response) throws IOException {
+		encabezadoService.exportIntoExcelFileAsi(response);
 	}
 
 }

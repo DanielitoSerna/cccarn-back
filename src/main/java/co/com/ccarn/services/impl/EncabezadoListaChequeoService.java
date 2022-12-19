@@ -13,6 +13,7 @@ import co.com.ccarn.dtos.ConceptoListaChequeoDto;
 import co.com.ccarn.dtos.DetalleListaChequeoDto;
 import co.com.ccarn.dtos.ListaChequeoDto;
 import co.com.ccarn.dtos.ResponseDto;
+import co.com.ccarn.excel.ExcelGeneratorAsi;
 import co.com.ccarn.excel.ExcelGeneratorBpg;
 import co.com.ccarn.model.ConceptoListaChequeo;
 import co.com.ccarn.model.DetalleListaChequeo;
@@ -163,7 +164,7 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 		return responseDto;
 	}
 	
-	public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
+	public void exportIntoExcelFileBpg(HttpServletResponse response) throws IOException {
 		response.setContentType("application/octet-stream");
 
         String headerKey = "Content-Disposition";
@@ -172,6 +173,19 @@ public class EncabezadoListaChequeoService implements IEncabezadoListaChequeoSer
 
         List<ListaChequeo> lista = encabezadoListaChequeoRepository.findByTipoFormato("BGP");
         ExcelGeneratorBpg generator = new ExcelGeneratorBpg(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileAsi(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=lista_asi.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<ListaChequeo> lista = encabezadoListaChequeoRepository.findByTipoFormato("ASI");
+        ExcelGeneratorAsi generator = new ExcelGeneratorAsi(lista);
         generator.generateExcelFile(response);
         cerrarConexionService.cerrarConexion();
 	}
