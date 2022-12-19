@@ -45,10 +45,14 @@ public class ExcelGeneratorToro {
 		createCell(row, 4, "Nombre Institucion", style);
 		createCell(row, 5, "Profesional a Cargo #1", style);
 		createCell(row, 6, "Profesional a Cargo #2", style);
-		createCell(row, 7, "Nombre Toro", style);
-		createCell(row, 8, "Número Toro", style);
-		createCell(row, 9, "Raza Toro", style);
-		createCell(row, 10, "Observaciones", style);
+		createCell(row, 7, "Técnico Responsable #1", style);
+		createCell(row, 8, "Tarjeta Profesional #1", style);
+		createCell(row, 9, "Técnico Responsable #2", style);
+		createCell(row, 10, "Tarjeta Profesional #2", style);
+		createCell(row, 11, "Nombre Toro", style);
+		createCell(row, 12, "Número Toro", style);
+		createCell(row, 13, "Raza Toro", style);
+		createCell(row, 14, "Observaciones", style);
 	}
 	
 	private void createCell(Row row, int columnCount, Object valueOfCell, CellStyle style) {
@@ -87,6 +91,10 @@ public class ExcelGeneratorToro {
 			createCell(row, columnCount++, record.getNombreFinca() != null ? record.getNombreFinca() : "", style);
 			createCell(row, columnCount++, record.getProfesionalACargoUno() != null ? record.getProfesionalACargoUno() : "", style);
 			createCell(row, columnCount++, record.getProfesionalACargoDos() != null ? record.getProfesionalACargoDos() : "", style);
+			createCell(row, columnCount++, record.getTecnicoResponsableUno() != null ? record.getTecnicoResponsableUno() : "", style);
+			createCell(row, columnCount++, record.getTarjetaProfesionalUno() != null ? record.getTarjetaProfesionalUno() : "", style);
+			createCell(row, columnCount++, record.getTecnicoResponsableDos() != null ? record.getTecnicoResponsableDos() : "", style);
+			createCell(row, columnCount++, record.getTarjetaProfesionalDos() != null ? record.getTarjetaProfesionalDos() : "", style);
 			columnCountAux=columnCount;
 			for(DetalleFormato detalleFormato : record.getDetalleFormatos()) {
 				createCell(row, columnCount, detalleFormato.getNombreToro() != null ? detalleFormato.getNombreToro() : "", style);

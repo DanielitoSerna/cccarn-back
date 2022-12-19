@@ -299,7 +299,7 @@ public class FormatoService implements IFormatoService {
         String headerValue = "attachment; filename=hembras.xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Formato> lista = formatoRepository.findByTipoFormato("TORO");
+        List<Formato> lista = formatoRepository.findByTipoFormato("TRANSFERENCIA EMBRIONES");
         ExcelGeneratorHembra generator = new ExcelGeneratorHembra(lista);
         generator.generateExcelFile(response);
         cerrarConexionService.cerrarConexion();
@@ -312,7 +312,7 @@ public class FormatoService implements IFormatoService {
         String headerValue = "attachment; filename=andrologicas.xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Formato> lista = formatoRepository.findByTipoFormato("TORO");
+        List<Formato> lista = formatoRepository.findByTipoFormato("EVALUACION ANDROLOGICA");
         ExcelGeneratorAndrologica generator = new ExcelGeneratorAndrologica(lista);
         generator.generateExcelFile(response);
         cerrarConexionService.cerrarConexion();
