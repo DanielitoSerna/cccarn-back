@@ -52,6 +52,10 @@ public class ExcelGeneratorDonadora {
 		createCell(row, 11, "Nombre Donadora", style);
 		createCell(row, 12, "Número Donadora", style);
 		createCell(row, 13, "Raza Donadora", style);
+		createCell(row, 14, "Nombre Toro", style);
+		createCell(row, 15, "Número Toro", style);
+		createCell(row, 16, "Raza Toro", style);
+		createCell(row, 17, "Observaciones", style);
 	}
 	
 	private void createCell(Row row, int columnCount, Object valueOfCell, CellStyle style) {
@@ -99,6 +103,16 @@ public class ExcelGeneratorDonadora {
 				createCell(row, columnCount, detalleFormato.getNombreDonadora() != null ? detalleFormato.getNombreDonadora() : "", style);
 				columnCount++;
 				createCell(row, columnCount, detalleFormato.getNumeroIdentificacion() != null ? detalleFormato.getNumeroIdentificacion() : "", style);
+				columnCount++;
+				createCell(row, columnCount, detalleFormato.getRazaDonadora() != null ? detalleFormato.getRazaDonadora() : "", style);
+				columnCount++;
+				createCell(row, columnCount, detalleFormato.getNombreToro() != null ? detalleFormato.getNombreToro() : "", style);
+				columnCount++;
+				createCell(row, columnCount, detalleFormato.getNumeroToro() != null ? detalleFormato.getNumeroToro() : "", style);
+				columnCount++;
+				createCell(row, columnCount, detalleFormato.getRazaToro() != null ? detalleFormato.getRazaToro() : "", style);
+				columnCount++;
+				createCell(row, columnCount, detalleFormato.getObservacion() != null ? detalleFormato.getObservacion() : "", style);
 				columnCount=columnCountAux;
 				row = sheet.createRow(rowCount++);
 			}
