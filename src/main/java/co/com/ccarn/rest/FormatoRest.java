@@ -74,7 +74,7 @@ public class FormatoRest {
 	
 	@GetMapping("/andrologica-excel")
 	public void exportIntoExcelFileAndrologica(HttpServletResponse response) throws IOException {
-		formatoService.exportIntoExcelFileIatf(response);
+		formatoService.exportIntoExcelFileAndrologica(response);
 	}
 
 }
