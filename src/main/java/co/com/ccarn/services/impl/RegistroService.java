@@ -1,6 +1,9 @@
 package co.com.ccarn.services.impl;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import co.com.ccarn.dtos.EncabezadoRegistroDto;
 import co.com.ccarn.dtos.RegistroDto;
 import co.com.ccarn.dtos.ResponseDto;
+import co.com.ccarn.excel.ExcelGeneratorCapacitacion;
 import co.com.ccarn.model.EncabezadoRegistro;
 import co.com.ccarn.model.Registro;
 import co.com.ccarn.repositories.EncabezadoRegistroRepository;
@@ -112,6 +116,19 @@ public class RegistroService implements IRegistroService {
 			}
 		}
 		return responseDto;
+	}
+	
+	public void exportIntoExcelFileCapacitacion(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=capacitaciones.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<EncabezadoRegistro> lista = encabezadoRegistroRepository.findByTipoFormato("CAPACITACION");
+        ExcelGeneratorCapacitacion generator = new ExcelGeneratorCapacitacion(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
 	}
 
 	private EncabezadoRegistro convertirDtoToEntidadEncabezado(EncabezadoRegistroDto encabezadoRegistroDto) {
