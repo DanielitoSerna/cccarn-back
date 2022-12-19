@@ -38,8 +38,23 @@ public class RegistroRest {
 	}
 	
 	@GetMapping("/capacitacion-excel")
-	public void exportIntoExcelFileAsi(HttpServletResponse response) throws IOException {
+	public void exportIntoExcelFileCapacitacion(HttpServletResponse response) throws IOException {
 		registroService.exportIntoExcelFileCapacitacion(response);
+	}
+	
+	@GetMapping("/tratamiento-excel")
+	public void exportIntoExcelFileTratamiento(HttpServletResponse response) throws IOException {
+		registroService.exportIntoExcelFileTratamiento(response);
+	}
+	
+	@GetMapping("/potrero-excel")
+	public void exportIntoExcelFilePotrero(HttpServletResponse response) throws IOException {
+		registroService.exportIntoExcelFilePotrero(response);
+	}
+	
+	@GetMapping("/personas-excel")
+	public void exportIntoExcelFilePersonas(HttpServletResponse response) throws IOException {
+		registroService.exportIntoExcelFilePersonas(response);
 	}
 
 }

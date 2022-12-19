@@ -13,6 +13,9 @@ import co.com.ccarn.dtos.EncabezadoRegistroDto;
 import co.com.ccarn.dtos.RegistroDto;
 import co.com.ccarn.dtos.ResponseDto;
 import co.com.ccarn.excel.ExcelGeneratorCapacitacion;
+import co.com.ccarn.excel.ExcelGeneratorPersona;
+import co.com.ccarn.excel.ExcelGeneratorPotrero;
+import co.com.ccarn.excel.ExcelGeneratorTratamiento;
 import co.com.ccarn.model.EncabezadoRegistro;
 import co.com.ccarn.model.Registro;
 import co.com.ccarn.repositories.EncabezadoRegistroRepository;
@@ -127,6 +130,45 @@ public class RegistroService implements IRegistroService {
 
         List<EncabezadoRegistro> lista = encabezadoRegistroRepository.findByTipoFormato("CAPACITACION");
         ExcelGeneratorCapacitacion generator = new ExcelGeneratorCapacitacion(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileTratamiento(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=tratamientos_veterinarios.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<EncabezadoRegistro> lista = encabezadoRegistroRepository.findByTipoFormato("VETERINARIO");
+        ExcelGeneratorTratamiento generator = new ExcelGeneratorTratamiento(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFilePotrero(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=manejo_potreros.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<EncabezadoRegistro> lista = encabezadoRegistroRepository.findByTipoFormato("POTRERO");
+        ExcelGeneratorPotrero generator = new ExcelGeneratorPotrero(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFilePersonas(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=control_personas_vehiculos.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<EncabezadoRegistro> lista = encabezadoRegistroRepository.findByTipoFormato("VEHICULO");
+        ExcelGeneratorPersona generator = new ExcelGeneratorPersona(lista);
         generator.generateExcelFile(response);
         cerrarConexionService.cerrarConexion();
 	}

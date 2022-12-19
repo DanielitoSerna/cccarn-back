@@ -31,7 +31,7 @@ public class ExcelGeneratorCapacitacion {
 	}
 	
 	private void writeHeader() {
-		sheet = workbook.createSheet("Lista Chequeo ASI");
+		sheet = workbook.createSheet("Capacitaciones");
 		Row row = sheet.createRow(0);
 		CellStyle style = workbook.createCellStyle();
 		XSSFFont font = workbook.createFont();
