@@ -1,6 +1,9 @@
 package co.com.ccarn.services.impl;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import co.com.ccarn.dtos.DetalleAndrologicoDto;
 import co.com.ccarn.dtos.DetalleFormatoDto;
 import co.com.ccarn.dtos.FormatoDto;
 import co.com.ccarn.dtos.ResponseDto;
+import co.com.ccarn.excel.ExcelGeneratorBra;
+import co.com.ccarn.excel.ExcelGeneratorRecomendacion;
 import co.com.ccarn.model.DetalleAndrologico;
 import co.com.ccarn.model.DetalleFormato;
 import co.com.ccarn.model.Formato;
@@ -201,6 +206,32 @@ public class FormatoService implements IFormatoService {
 		ModelMapper modelMapper = new ModelMapper();
 		Formato formato = modelMapper.map(formatoDto, Formato.class);
 		return formato;
+	}
+	
+	public void exportIntoExcelFileRecomendacion(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=recomendaciones.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("RECOMENDACIONES");
+        ExcelGeneratorRecomendacion generator = new ExcelGeneratorRecomendacion(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
+	}
+	
+	public void exportIntoExcelFileBra(HttpServletResponse response) throws IOException {
+		response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=registro_bra.xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Formato> lista = formatoRepository.findByTipoFormato("BRA");
+        ExcelGeneratorBra generator = new ExcelGeneratorBra(lista);
+        generator.generateExcelFile(response);
+        cerrarConexionService.cerrarConexion();
 	}
 
 }
