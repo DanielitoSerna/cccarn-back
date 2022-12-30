@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class TrazabilidadRest {
 	private TrazabilidadService trazabilidadService;
 	
 	@PostMapping(path = "/trazabilidad", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> guardar(TrazabilidadDto trazabilidadDto) {
+	public ResponseEntity<?> guardar(@RequestBody TrazabilidadDto trazabilidadDto) {
 		ResponseDto responseDto = trazabilidadService.guardarTrazabilidad(trazabilidadDto);
 		if ("Error".equals(responseDto.getCodigo())) {
 			return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);

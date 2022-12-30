@@ -1,12 +1,13 @@
 package co.com.ccarn.model;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,21 +25,7 @@ public class Trazabilidad {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name="codigo_interno")
-	private String codigoInterno;
-
 	private String departamento;
-
-	private String din;
-
-	@Column(name="din_madre")
-	private String dinMadre;
-
-	@Column(name="din_padre")
-	private String dinPadre;
-
-	@Column(name="fecha_nacimiento")
-	private Date fechaNacimiento;
 
 	@Column(name="identificacion_ganadero")
 	private String identificacionGanadero;
@@ -51,13 +38,10 @@ public class Trazabilidad {
 	@Column(name="nombre_predio")
 	private String nombrePredio;
 
-	@Column(name="numero_trabajo")
-	private String numeroTrabajo;
-
-	private String raza;
-
-	private String sexo;
-
 	private String vereda;
+
+	//bi-directional many-to-one association to DetalleTrazabiidad
+	@OneToMany(mappedBy="trazabilidadBean")
+	private List<DetalleTrazabilidad> detalleTrazabilidad;
 
 }
