@@ -2,10 +2,6 @@ package co.com.ccarn.dtos;
 
 import java.util.Date;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,8 +31,6 @@ public class DetalleTrazabilidadDto {
 
 	private String sexo;
 
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="trazabilidad")
 	private TrazabilidadDto trazabilidadBean;
 
 }

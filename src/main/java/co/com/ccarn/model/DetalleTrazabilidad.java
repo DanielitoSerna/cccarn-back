@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,8 +48,7 @@ public class DetalleTrazabilidad {
 
 	private String sexo;
 
-	//bi-directional many-to-one association to Trazabilidad
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="trazabilidad")
 	private Trazabilidad trazabilidadBean;
 
