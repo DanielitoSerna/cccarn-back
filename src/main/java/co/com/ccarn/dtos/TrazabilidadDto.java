@@ -15,8 +15,6 @@ public class TrazabilidadDto {
 	
 	private Integer id;
 
-	private String codigoInterno;
-
 	private String departamento;
 
 	private String identificacionGanadero;

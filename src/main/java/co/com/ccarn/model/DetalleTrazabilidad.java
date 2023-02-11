@@ -1,7 +1,5 @@
 package co.com.ccarn.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,8 +36,8 @@ public class DetalleTrazabilidad {
 	@Column(name="din_padre")
 	private String dinPadre;
 
-	@Column(name="fecha_nacimiento")
-	private Date fechaNacimiento;
+	@Column(name="edad")
+	private String edad;
 
 	@Column(name="numero_trabajo")
 	private String numeroTrabajo;

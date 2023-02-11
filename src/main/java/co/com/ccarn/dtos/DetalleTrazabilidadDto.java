@@ -1,7 +1,5 @@
 package co.com.ccarn.dtos;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,7 @@ public class DetalleTrazabilidadDto {
 
 	private String dinPadre;
 
-	private Date fechaNacimiento;
+	private String edad;
 
 	private String numeroTrabajo;
 
